@@ -1,0 +1,9 @@
+.home-screen {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.home-screen .pomodoro-section {
+  min-height: 100vh;
+}

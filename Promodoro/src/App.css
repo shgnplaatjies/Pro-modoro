@@ -1,0 +1,5 @@
+.app-screen {
+  display: flex;
+  height: 100%;
+  padding-inline: 2rem;
+}

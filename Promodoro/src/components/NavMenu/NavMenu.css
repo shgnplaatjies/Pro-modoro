@@ -1,0 +1,12 @@
+nav.nav-menu-widget button {
+  width: 2rem;
+  height: 2rem;
+  padding: 0.3rem;
+}
+
+nav.nav-menu-widget {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 0.5rem;
+}
