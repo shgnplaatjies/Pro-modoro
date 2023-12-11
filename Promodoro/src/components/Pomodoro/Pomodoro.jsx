@@ -1,5 +1,4 @@
 import "./Pomodoro.css";
-import AppHeader from "../AppHeader/AppHeader.jsx";
 
 /**
  * Renders the various Pomodoro app modes

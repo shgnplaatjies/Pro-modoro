@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { DotLoader } from "react-spinners";
+import "./Loading.css";
 
-function Splash() {
+function Loading() {
   const loadingTextArray = [
     "Loading.",
     "Loading..",
@@ -23,10 +25,11 @@ function Splash() {
   });
 
   return (
-    <div className="splash-screen">
+    <div className="loading-screen">
       <h2>{loadingText}</h2>
+      <DotLoader className="dot-loader" loading size={"2.3rem"} color="black" />
     </div>
   );
 }
 
-export default Splash;
+export default Loading;
