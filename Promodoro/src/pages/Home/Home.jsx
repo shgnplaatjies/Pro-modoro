@@ -8,8 +8,8 @@ function Home() {
 
   return (
     <div className="home-screen">
-      <AppHeader />
       <section className="pomodoro-section">
+        <AppHeader />
         <Pomodoro mode={currentPomodoroMode} />
       </section>
       <section className="info-section">
