@@ -1,4 +1,5 @@
 import "./Pomodoro.css";
+import GeneralStatsList from "./GeneralStatsList/GeneralStatsList.jsx";
 
 /**
  * Renders the various Pomodoro app modes
@@ -10,15 +11,17 @@ function Pomodoro() {
   return (
     <div className="pomodoro-widget">
       <div className="mode-selector"></div>
-      <div className="timer-component"></div>
-      <section className="pomodoro-task-title">
+      <div className="timer-widget">
+        <div className="timer-clock-widget"></div>
+        <div className="timer-controls-widget"></div>
+      </div>
+      <section className="pomodoro-tasks-widget">
         <h2>Tasks</h2>
         <button className="pomodoro-tasks-settings">
           {/* <svg className="hamburger-icon"></svg> */}
         </button>
       </section>
-      <div className="tasks-widget">
-        <div className="tasks-title"></div>
+      <div className="tasks-list-widget">
         <ul className="tasks-list">
           <li className="task-list-item">
             <article className="minimized-task-widget">
@@ -36,6 +39,8 @@ function Pomodoro() {
                 <p>{"This is a note you've added to your task"}</p>
               </aside>
             </article>
+          </li>
+          <li className="task-list-item">
             <article className="maximized-task-widget">
               <h3 className="task-title">{"Suh'in"}</h3>
               <h4>Actual/Estimated Pomodoros</h4>
@@ -54,7 +59,9 @@ function Pomodoro() {
                 rows={3}
                 className="task-note"
                 placeholder="Enter some additional notes about this task here."
-                value={"Value of the task note from the useApplicationContext"}
+                value={
+                  "Value of the task's note from the useApplicationContext"
+                }
               ></textarea>
               <div className="task-actions">
                 <button type="button" className="delete"></button>
@@ -64,17 +71,12 @@ function Pomodoro() {
                 </span>
               </div>
             </article>
-            <table className="general-pomodoro-stats">
-              <tr className="general-pomodoro-stat">
-                <td className="general-pomodoro-stat-label">{"Pomos:"}</td>
-                <td className="general-pomodoro-stat-value">{"1/2"}</td>
-              </tr>
-            </table>
           </li>
         </ul>
         <button type="button" className="add-new-task">
           <svg className="plus-icon"></svg>
           <p>Add Task</p>
+          <GeneralStatsList />
         </button>
       </div>
     </div>
