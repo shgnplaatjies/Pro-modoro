@@ -5,3 +5,8 @@ header.app-header-widget {
   padding-block: 0.5rem;
   margin-block: 0.5rem;
 }
+
+.app-header-widget .logo-widget {
+  height: 1.4em;
+  font-size: 1.2em;
+}
