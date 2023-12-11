@@ -1,3 +1,4 @@
+import "./App.css";
 import Splash from "./pages/Splash/Splash.jsx";
 import Home from "./pages/Home/Home.jsx";
 import { useEffect, useState } from "react";
@@ -16,7 +17,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
+    <div className="app-screen">
       {loading ? (
         <Splash />
       ) : (
