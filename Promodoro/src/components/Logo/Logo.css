@@ -4,12 +4,13 @@
   height: 100%;
   font-size: 1.5rem;
   gap: 0.5rem;
+  align-self: center;
 }
 
 .logo-widget .logo-text {
-  font-size: 100%;
-  padding-left: 0.5rem;
+  font-size: inherit;
   margin-block: auto;
+  line-height: 1;
 }
 
 .logo-widget img {
