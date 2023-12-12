@@ -1,5 +1,5 @@
 # Pro-modoro
-React-based Pomodoro timer for people  who value customization without breaking the bank. Designed with a clean interface and flexibility in mind, Promodoro is your personal time management tool.
+React-based Pomodoro timer to practice my React skills while making a utility app I plan to use myself.
 
 ## How to run? 
 
