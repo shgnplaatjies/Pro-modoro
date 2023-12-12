@@ -1,7 +1,7 @@
 import TimerControls from "./TimerControls/TimerControls.jsx";
 import TimerClock from "./TimerClock/TimerClock.jsx";
 
-function TimerWidget() {
+function Timer() {
   return (
     <div className="timer-widget">
       <TimerClock />
@@ -10,4 +10,4 @@ function TimerWidget() {
   );
 }
 
-export default TimerWidget;
+export default Timer;
