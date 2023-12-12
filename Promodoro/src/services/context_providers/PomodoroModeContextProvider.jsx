@@ -27,12 +27,16 @@ const PomodoroModesContextProvider = ({ children }) => {
   };
 
   const syncModes = useCallback(() => {
-    for (const key in modes)
-      if (modes[key].name === mode.name) {
+    if (modes[mode.key])
+      setModes((prev) => {
         const updatedModes = {};
-        updatedModes[key] = mode;
-        setModes({ ...modes, ...updatedModes });
-      }
+        updatedModes[mode.key] = mode;
+        return { ...prev, ...updatedModes };
+      });
+    else
+      throw Error(
+        "This mode has been corrupted and cannot sync, check that it contains a key property"
+      );
   }, [mode, modes]);
 
   const switchMode = useCallback(
@@ -52,16 +56,17 @@ const PomodoroModesContextProvider = ({ children }) => {
     if (mode.timeLeft === 0) {
       setMode({ ...mode, isActive: false });
       playAlarm();
-      // TODO: Implement logic to switch mode based on pomodoro pattern (┬┬﹏┬┬)
+      // TODO: Implement logic to switch mode based on pomodoro pattern
     } else if (mode.isActive) {
       setMode((prev) => ({ ...mode, timeLeft: prev.timeLeft - 1 }));
     }
   }, [mode]);
 
   useEffect(() => {
-    let timeoutId; // Not strictly functional, but rules are meant to be broken, ama'right?( ´･･)ﾉ(._.`)
-    if (mode.isActive && mode.timeLeft > 1)
-      timeoutId = setTimeout(() => updateMode(), 1000);
+    const timeoutId =
+      mode.isActive && mode.timeLeft >= 0
+        ? setTimeout(() => updateMode(), 1000)
+        : undefined;
 
     return () => clearTimeout(timeoutId);
   }, [mode.isActive, mode.timeLeft, updateMode]);
