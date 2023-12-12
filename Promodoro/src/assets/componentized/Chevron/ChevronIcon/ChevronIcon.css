@@ -1,0 +1,24 @@
+.chevron-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Don't correlate exactly due to the different svg default orientations */
+.chevron-icon.up,
+.chevron-icon.circled.right {
+  transform: rotate(-90deg);
+}
+
+.chevron-icon.down,
+.chevron-icon.circled.left {
+  transform: rotate(90deg);
+}
+
+.chevron-icon.left,
+.chevron-icon.circled.up {
+  transform: rotate(180deg);
+}
+
+.chevron-icon.right,
+.chevron-icon.circled.down {
+  transform: rotate(0deg);
+}
