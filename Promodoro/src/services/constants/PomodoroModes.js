@@ -6,8 +6,12 @@ export const DEFAULT_POMODORO_MODE = {
 };
 
 export const POMODORO_OBJECTS = {
-  default: DEFAULT_POMODORO_MODE,
-  focus: DEFAULT_POMODORO_MODE,
-  shortBreak: { name: "Short Break", ...DEFAULT_POMODORO_MODE },
-  longBreak: { name: "Long Break", ...DEFAULT_POMODORO_MODE },
+  default: { key: "default", ...DEFAULT_POMODORO_MODE },
+  focus: { key: "focus", ...DEFAULT_POMODORO_MODE },
+  shortBreak: {
+    key: "shortBreak",
+    name: "Short Break",
+    ...DEFAULT_POMODORO_MODE,
+  },
+  longBreak: { key: "longBreak", name: "Long Break", ...DEFAULT_POMODORO_MODE },
 };
