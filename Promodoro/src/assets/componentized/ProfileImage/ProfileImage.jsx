@@ -4,6 +4,7 @@ function ProfileImage() {
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"
       id="profile-image"
+      className="profile-image"
       viewBox="0 0 512 512"
       style={{ enableBackground: "new 0 0 512 512" }}
     >
