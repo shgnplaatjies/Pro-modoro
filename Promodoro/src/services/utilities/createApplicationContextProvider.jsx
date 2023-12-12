@@ -1,16 +1,25 @@
-import React from "react";
+import PropTypes from "prop-types";
+import NestedProviders from "../../components/NestedProvider/NestedProvider.jsx";
+
 export const createApplicationContextProvider = (providers) => {
   if (providers.length === 1) return providers[0];
 
-  const [currentProvider, ...remainingProviders] = providers;
+  return providers.reduce((AccumulatedProviders, CurrentProvider) => {
+    function NestedProviderHierarchy({ children }) {
+      return (
+        <NestedProviders
+          RecursiveProvider={AccumulatedProviders}
+          CurrentProvider={CurrentProvider}
+        >
+          {children}
+        </NestedProviders>
+      );
+    }
 
-  const NestedProvider = () => {
-    React.createElement(
-      currentProvider,
-      null,
-      createApplicationContextProvider(remainingProviders) // recursion ( ´･･)ﾉ(._.`)
-    );
-  };
+    NestedProviderHierarchy.propTypes = {
+      children: PropTypes.element,
+    };
 
-  return NestedProvider;
+    return NestedProviderHierarchy;
+  });
 };

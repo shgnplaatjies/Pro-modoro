@@ -24,7 +24,7 @@ function Task({ expanded, taskData }) {
 }
 
 Task.propTypes = {
-  expanded: PropTypes.bool.isRequired,
+  expanded: PropTypes.bool,
   taskData: PropTypes.oneOf([TaskMaximizedPropTypes, TaskMinimizedPropTypes]),
 };
 

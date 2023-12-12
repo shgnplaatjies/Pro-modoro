@@ -14,3 +14,7 @@ export const TaskMinimizedPropTypes = {
   estimatedCycles: PropTypes.number,
   note: PropTypes.string,
 };
+
+export const ContextProviderPropTypes = {
+  children: PropTypes.element.isRequired,
+};
