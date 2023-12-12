@@ -1,7 +1,9 @@
+const defaultTime = 60 * 25;
+
 export const DEFAULT_POMODORO_MODE = {
   name: "Pomodoro",
-  timeLeft: 60 * 25,
-  timeTotal: 60 * 25,
+  timeLeft: defaultTime,
+  timeTotal: defaultTime,
   isActive: false,
 };
 
