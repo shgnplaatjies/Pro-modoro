@@ -16,7 +16,7 @@ import { playAlarm } from "../../assets/sounds/SimpleSounds/SimpleSounds.js";
  * @param {React.JSX.Element} children Uses react's built-in prop 'children'
  * @returns
  */
-const PomodoroModesContextProvider = ({ children }) => {
+function PomodoroModesContextProvider({ children }) {
   const [mode, setMode] = useState(POMODORO_OBJECTS.default);
   const [modes, setModes] = useState(POMODORO_OBJECTS);
 
@@ -92,7 +92,7 @@ const PomodoroModesContextProvider = ({ children }) => {
       </AvailablePomodoroModesContext.Provider>
     </CurrentPomodoroModeContext.Provider>
   );
-};
+}
 
 PomodoroModesContextProvider.propTypes = {
   children: PropTypes.element.isRequired,
