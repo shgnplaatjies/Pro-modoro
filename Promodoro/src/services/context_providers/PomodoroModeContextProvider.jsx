@@ -7,8 +7,8 @@ import {
   TogglePomodoroModeActivityContext,
   ResetPomodoroModeContext,
 } from "../contexts/PomodoroModeContext.js";
-import PropTypes from "prop-types";
 import { playAlarm } from "../../assets/sounds/SimpleSounds/SimpleSounds.js";
+import { ContextProviderPropTypes } from "../constants/PropTypeShapes.js";
 
 /**
  * Provides the values for Pomodoro modes context
@@ -94,8 +94,6 @@ function PomodoroModesContextProvider({ children }) {
   );
 }
 
-PomodoroModesContextProvider.propTypes = {
-  children: PropTypes.element.isRequired,
-};
+PomodoroModesContextProvider.propTypes = ContextProviderPropTypes;
 
 export default PomodoroModesContextProvider;
