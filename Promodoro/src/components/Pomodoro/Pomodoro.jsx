@@ -1,6 +1,6 @@
 import "./Pomodoro.css";
 import GeneralStatsList from "./GeneralStatsList/GeneralStatsList.jsx";
-import TimerWidget from "../TimerWidget/TimerWidget.jsx";
+import Timer from "../Timer/Timer.jsx";
 import TasksList from "../TasksList/TaskList.jsx";
 
 /**
@@ -13,7 +13,7 @@ function Pomodoro() {
   return (
     <div className="pomodoro-widget">
       <div className="mode-selector"></div>
-      <TimerWidget />
+      <Timer />
       <TasksList />
       <GeneralStatsList />
     </div>
