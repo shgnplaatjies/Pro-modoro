@@ -1,18 +1,24 @@
-/* eslint-disable no-unused-vars */
 import { createContext } from "react";
-import { POMODORO_MODES } from "../constants/PomodoroModes";
+import { POMODORO_OBJECTS } from "../constants/PomodoroModes";
 
-export const CurrentPomodoroModeContext = createContext(POMODORO_MODES.default);
+export const CurrentPomodoroModeContext = createContext({
+  ...POMODORO_OBJECTS.default,
+});
 
-export const AvailablePomodoroModesContext = createContext(POMODORO_MODES);
+export const AvailablePomodoroModesContext = createContext(POMODORO_OBJECTS);
 
-export const UpdatePomodoroModeContext = createContext((modeKey) => {});
+export const SwitchPomodoroModeContext = createContext((modeKey) => {
+  if (POMODORO_OBJECTS[modeKey]) throw Error("Invalid Pomodoro Mode Key");
+});
+
+export const TogglePomodoroModeActivityContext = createContext(() => {});
 
 export const ResetPomodoroModeContext = createContext(() => {});
 
 export default {
   CurrentPomodoroModeContext,
   AvailablePomodoroModesContext,
-  UpdatePomodoroModeContext,
+  SwitchPomodoroModeContext,
+  TogglePomodoroModeActivityContext,
   ResetPomodoroModeContext,
 };

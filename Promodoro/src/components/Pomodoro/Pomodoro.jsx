@@ -1,5 +1,14 @@
 import "./Pomodoro.css";
 import GeneralStatsList from "./GeneralStatsList/GeneralStatsList.jsx";
+import VerticalDotsIcon from "../../assets/componentized/VerticalDotsIcon/VerticalDotsIcon.jsx";
+import PlusIcon from "../../assets/componentized/PlusIcon/PlusIcon.jsx";
+import CheckIcon from "../../assets/componentized/CheckIcon/CheckIcon.jsx";
+import ChevronDownIcon from "../../assets/componentized/Chevron/ChevronDownIcon/ChevronDownIcon.jsx";
+import {
+  useCurrentPomodoroMode,
+  useAvailablePomodoroModes,
+} from "../../services/hooks/usePomodoroModeContext.js";
+import TimerWidget from "../TimerWidget/TimerWidget.jsx";
 
 /**
  * Renders the various Pomodoro app modes
@@ -8,17 +17,19 @@ import GeneralStatsList from "./GeneralStatsList/GeneralStatsList.jsx";
  * @param {string} props.mode Pomodoro mode to render
  */
 function Pomodoro() {
+  const mode = useCurrentPomodoroMode();
+  const modes = useAvailablePomodoroModes();
+
   return (
     <div className="pomodoro-widget">
       <div className="mode-selector"></div>
       <div className="timer-widget">
-        <div className="timer-clock-widget"></div>
-        <div className="timer-controls-widget"></div>
+        <TimerWidget />
       </div>
       <section className="pomodoro-tasks-widget">
         <h2>Tasks</h2>
         <button className="pomodoro-tasks-settings">
-          {/* <svg className="hamburger-icon"></svg> */}
+          <VerticalDotsIcon />
         </button>
       </section>
       <div className="tasks-list-widget">
@@ -27,7 +38,11 @@ function Pomodoro() {
             <article className="minimized-task-widget">
               <section>
                 <div className="progress-icon">
-                  {/* Add logic for which icon to show here */}
+                  {mode.name == modes.default.name ? (
+                    <PlusIcon />
+                  ) : (
+                    <CheckIcon />
+                  )}
                 </div>
                 <h3 className="title">{"Suh'in"}</h3>
                 <h3 className="pomodoro-progress">
@@ -49,10 +64,10 @@ function Pomodoro() {
                 <p>/</p>
                 <input type="number" value={1}></input>
                 <button type="button" className="up">
-                  {/* <svg className="up-chevron"></svg> */}
+                  <ChevronDownIcon />
                 </button>
                 <button type="button" className="down">
-                  {/* <svg className="down-chevron"></svg> */}
+                  <ChevronDownIcon />
                 </button>
               </div>
               <textarea
@@ -74,7 +89,7 @@ function Pomodoro() {
           </li>
         </ul>
         <button type="button" className="add-new-task">
-          <svg className="plus-icon"></svg>
+          <PlusIcon />
           <p>Add Task</p>
           <GeneralStatsList />
         </button>
