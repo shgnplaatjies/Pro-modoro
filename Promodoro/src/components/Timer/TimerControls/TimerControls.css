@@ -1,13 +1,21 @@
 .timer-controls {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
-.timer-controls .next-mode svg {
+.timer-controls button.toggle-pause {
+  padding: 1rem;
+}
+
+.timer-controls button.reset-mode svg {
+  height: 1.3rem;
+}
+
+.timer-controls button.next-mode svg {
   height: 2rem;
 }
 
-.timer-controls button.next-mode {
+.timer-controls button {
   padding: 0;
 }

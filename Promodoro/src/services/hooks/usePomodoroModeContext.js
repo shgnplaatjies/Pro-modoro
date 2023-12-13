@@ -14,7 +14,7 @@ export const useCurrentPomodoroMode = () =>
 export const useAvailablePomodoroModes = () =>
   useContext(AvailablePomodoroModesContext);
 
-export const useUpdatePomodoroMode = () =>
+export const useSwitchPomodoroMode = () =>
   useContext(SwitchPomodoroModeContext);
 
 export const useTogglePomodoroModeActivityContext = () =>

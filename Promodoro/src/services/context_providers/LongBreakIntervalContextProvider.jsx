@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { ContextProviderPropTypes } from "../constants/PropTypeShapes.js";
 import {
   CurrentLongBreakIntervalContext,
-  UpdateCurrentLongBreakIntervalContext,
+  SwitchCurrentLongBreakIntervalContext,
   ResetCurrentLongBreakIntervalContext,
   MaxLongBreakIntervalContext,
   UpdateMaxLongBreakIntervalContext,
@@ -64,7 +64,7 @@ function LongBreakIntervalContextProvider({ children }) {
             <ResetCurrentLongBreakIntervalContext.Provider
               value={resetCurrentLongBreakInterval}
             >
-              <UpdateCurrentLongBreakIntervalContext.Provider
+              <SwitchCurrentLongBreakIntervalContext.Provider
                 value={updateCurrentLongBreakInterval}
               >
                 <IncrementCurrentLongBreakIntervalContext.Provider
@@ -72,7 +72,7 @@ function LongBreakIntervalContextProvider({ children }) {
                 >
                   {children}
                 </IncrementCurrentLongBreakIntervalContext.Provider>
-              </UpdateCurrentLongBreakIntervalContext.Provider>
+              </SwitchCurrentLongBreakIntervalContext.Provider>
             </ResetCurrentLongBreakIntervalContext.Provider>
           </CurrentLongBreakIntervalContext.Provider>
         </ResetMaxLongBreakIntervalContext.Provider>
