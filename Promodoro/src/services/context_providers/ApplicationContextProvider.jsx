@@ -3,8 +3,8 @@ import { createApplicationContextProvider } from "../utilities/createApplication
 import TaskListContextProvider from "./TaskListContextProvider.jsx";
 
 const ApplicationContextHierarchy = [
-  TaskListContextProvider,
   PomodoroModesContextProvider,
+  TaskListContextProvider,
 ];
 
 export const ApplicationContextProvider = createApplicationContextProvider(

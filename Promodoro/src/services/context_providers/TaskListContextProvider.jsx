@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   CurrentTaskContext,
   AvailableTasksContext,
@@ -28,23 +28,27 @@ function TaskListContextProvider({ children }) {
       noteText = DEFAULT_TASK.noteText,
       title = DEFAULT_TASK_TITLE,
       titlePlaceholder = DEFAULT_TASK_TITLE_PLACEHOLDER,
-    }) => {
-      const id = taskList.length ? taskList[taskList.length - 1].id++ : 0;
-
+    } = {}) => {
       setTaskList((prev) => {
-        prev.push({
-          id,
-          complete,
-          cyclesElapsed,
-          cyclesEstimated,
-          noteText,
-          title,
-          titlePlaceholder,
-        });
-        return prev;
+        const id = prev.length ? ++prev[prev.length - 1].id : 0;
+
+        const updatedList = [
+          ...prev,
+          {
+            id,
+            complete,
+            cyclesElapsed,
+            cyclesEstimated,
+            noteText,
+            title,
+            titlePlaceholder,
+          },
+        ];
+
+        return updatedList;
       });
     },
-    [taskList]
+    []
   );
 
   const deleteTask = useCallback(
