@@ -1,14 +1,23 @@
 import { useCallback, useState, useEffect } from "react";
-import { POMODORO_OBJECTS } from "../constants/PomodoroModes.js";
+import {
+  POMODORO_OBJECTS,
+  POMODORO_MODE_KEYS,
+} from "../constants/PomodoroModes.js";
 import {
   CurrentPomodoroModeContext,
   AvailablePomodoroModesContext,
   SwitchPomodoroModeContext,
   TogglePomodoroModeActivityContext,
   ResetPomodoroModeContext,
+  NextPomodoroModeContext,
 } from "../contexts/PomodoroModeContext.js";
 import { playAlarm } from "../../assets/sounds/SimpleSounds/SimpleSounds.js";
 import { ContextProviderPropTypes } from "../constants/PropTypeShapes.js";
+import {
+  useCurrentLongBreakIntervalContext,
+  useIncrementCurrentLongBreakIntervalContext,
+  useMaxLongBreakIntervalContext,
+} from "../hooks/useLongBreakIntervalContext.js";
 
 /**
  * Provides the values for Pomodoro modes context
@@ -17,6 +26,11 @@ import { ContextProviderPropTypes } from "../constants/PropTypeShapes.js";
  * @returns
  */
 function PomodoroModesContextProvider({ children }) {
+  const currentInterval = useCurrentLongBreakIntervalContext();
+  const incrementCurrentInterval =
+    useIncrementCurrentLongBreakIntervalContext();
+  const maxInterval = useMaxLongBreakIntervalContext();
+
   const [mode, setMode] = useState(POMODORO_OBJECTS.default);
   const [modes, setModes] = useState(POMODORO_OBJECTS);
 
@@ -52,6 +66,21 @@ function PomodoroModesContextProvider({ children }) {
     [syncModes, modes]
   );
 
+  const nextMode = useCallback(() => {
+    if (mode.key === POMODORO_MODE_KEYS.focus) {
+      if (currentInterval === maxInterval) {
+        setMode(POMODORO_MODE_KEYS.longBreak);
+        incrementCurrentInterval();
+      } else {
+        setMode(POMODORO_MODE_KEYS.shortBreak);
+        incrementCurrentInterval();
+      }
+    } else {
+      setMode(POMODORO_MODE_KEYS.focus);
+      incrementCurrentInterval();
+    }
+  }, [currentInterval, incrementCurrentInterval, maxInterval, mode.key]);
+
   const updateMode = useCallback(() => {
     if (mode.timeLeft === 0) {
       setMode({ ...mode, isActive: false });
@@ -75,21 +104,25 @@ function PomodoroModesContextProvider({ children }) {
     setMode((prev) => ({ ...mode, isActive: !prev.isActive }));
   }, [mode]);
 
-  const resetMode = useCallback(() => setMode(POMODORO_OBJECTS.default), []);
+  const resetMode = useCallback(() => {
+    setMode(POMODORO_OBJECTS.default);
+  }, []);
 
   return (
     <CurrentPomodoroModeContext.Provider value={mode}>
-      <AvailablePomodoroModesContext.Provider value={modes}>
-        <SwitchPomodoroModeContext.Provider value={switchMode}>
-          <ResetPomodoroModeContext.Provider value={resetMode}>
-            <TogglePomodoroModeActivityContext.Provider
-              value={toggleCurrentModeActive}
-            >
-              {children}
-            </TogglePomodoroModeActivityContext.Provider>
-          </ResetPomodoroModeContext.Provider>
-        </SwitchPomodoroModeContext.Provider>
-      </AvailablePomodoroModesContext.Provider>
+      <NextPomodoroModeContext.Provider value={nextMode}>
+        <AvailablePomodoroModesContext.Provider value={modes}>
+          <SwitchPomodoroModeContext.Provider value={switchMode}>
+            <ResetPomodoroModeContext.Provider value={resetMode}>
+              <TogglePomodoroModeActivityContext.Provider
+                value={toggleCurrentModeActive}
+              >
+                {children}
+              </TogglePomodoroModeActivityContext.Provider>
+            </ResetPomodoroModeContext.Provider>
+          </SwitchPomodoroModeContext.Provider>
+        </AvailablePomodoroModesContext.Provider>
+      </NextPomodoroModeContext.Provider>
     </CurrentPomodoroModeContext.Provider>
   );
 }
