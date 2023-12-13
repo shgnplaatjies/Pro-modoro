@@ -5,6 +5,7 @@ import {
   SwitchPomodoroModeContext,
   TogglePomodoroModeActivityContext,
   ResetPomodoroModeContext,
+  NextPomodoroModeContext,
 } from "../contexts/PomodoroModeContext.js";
 
 export const useCurrentPomodoroMode = () =>
@@ -21,3 +22,6 @@ export const useTogglePomodoroModeActivityContext = () =>
 
 export const useResetPomodoroModeContext = () =>
   useContext(ResetPomodoroModeContext);
+
+export const useNextPomodoroModeContext = () =>
+  useContext(NextPomodoroModeContext);
