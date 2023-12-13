@@ -1,3 +1,13 @@
-.timer-controls .reset-time-left svg {
-  height: 1rem;
+.timer-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.timer-controls .next-mode svg {
+  height: 2rem;
+}
+
+.timer-controls button.next-mode {
+  padding: 0;
 }
