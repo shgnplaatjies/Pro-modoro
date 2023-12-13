@@ -9,9 +9,11 @@ import {
   ResetMaxLongBreakIntervalContext,
   IncrementCurrentLongBreakIntervalContext,
 } from "../contexts/LongBreakIntervalContext.js";
+import { DEFAULT_SETTINGS_CONFIG } from "../constants/PomodoroSettings.js";
 
 function LongBreakIntervalContextProvider({ children }) {
-  const defaultMaxLongBreakInterval = 10;
+  const defaultMaxLongBreakInterval =
+    DEFAULT_SETTINGS_CONFIG.time.longBreakInterval;
 
   const [currentLongBreakInterval, setCurrentLongBreakInterval] = useState(0);
   const [maxLongBreakInterval, setMaxLongBreakInterval] = useState(

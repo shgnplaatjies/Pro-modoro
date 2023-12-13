@@ -5,6 +5,6 @@ export const DEFAULT_SETTINGS_CONFIG = {
       shortBreak: 10 * 60,
       longBreak: 20 * 60,
     },
-    longBreakInterval: 1,
+    longBreakInterval: 2,
   },
 };
