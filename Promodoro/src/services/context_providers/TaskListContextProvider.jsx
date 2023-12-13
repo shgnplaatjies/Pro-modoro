@@ -30,7 +30,7 @@ function TaskListContextProvider({ children }) {
       titlePlaceholder = DEFAULT_TASK_TITLE_PLACEHOLDER,
     } = {}) => {
       setTaskList((prev) => {
-        const id = prev.length ? ++prev[prev.length - 1].id : 0;
+        const id = prev.length ? prev.length + 1 : 0;
 
         const updatedList = [
           ...prev,
