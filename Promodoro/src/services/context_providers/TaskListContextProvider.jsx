@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import {
   CurrentTaskContext,
   AvailableTasksContext,
@@ -31,6 +31,8 @@ function TaskListContextProvider({ children }) {
     } = {}) => {
       setTaskList((prev) => {
         const id = prev.length ? prev.length + 1 : 0;
+
+        if (prev.length === 1) setCurrentTask(() => prev[0]);
 
         const updatedList = [
           ...prev,

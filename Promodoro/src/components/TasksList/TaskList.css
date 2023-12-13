@@ -10,3 +10,13 @@
 .tasks-list-widget button.pomodoro-tasks-settings {
   padding: 0.5rem;
 }
+
+.tasks-list-widget .pomodoro-tasks-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.tasks-list-widget .pomodoro-tasks-header h2 {
+  margin-block: auto;
+}

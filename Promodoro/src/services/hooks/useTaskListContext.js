@@ -9,7 +9,7 @@ import {
   UpdateTaskListContext,
 } from "../contexts/TaskListContext.js";
 
-export const useCurrentTaskList = () => useContext(CurrentTaskContext);
+export const useCurrentTask = () => useContext(CurrentTaskContext);
 
 export const useAvailableTaskList = () => useContext(AvailableTasksContext);
 
