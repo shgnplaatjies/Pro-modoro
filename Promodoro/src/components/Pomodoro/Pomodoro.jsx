@@ -13,7 +13,6 @@ import TasksList from "../TasksList/TaskList.jsx";
 function Pomodoro() {
   return (
     <div className="pomodoro-widget">
-      <div className="mode-selector"></div>
       <Timer />
       <CurrentTaskHeader />
       <TasksList />

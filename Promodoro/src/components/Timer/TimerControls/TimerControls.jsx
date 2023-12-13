@@ -1,6 +1,8 @@
 import ChevronIcon from "../../../assets/componentized/Chevron/ChevronIcon/ChevronIcon.jsx";
+import RefreshIcon from "../../../assets/componentized/RefreshIcon/RefreshIcon.jsx";
 import {
   useCurrentPomodoroMode,
+  useNextPomodoroModeContext,
   useResetPomodoroModeContext,
   useTogglePomodoroModeActivityContext,
 } from "../../../services/hooks/usePomodoroModeContext.js";
@@ -10,10 +12,7 @@ function TimerControls() {
   const mode = useCurrentPomodoroMode();
   const toggleModeActivity = useTogglePomodoroModeActivityContext();
   const resetPomodoroMode = useResetPomodoroModeContext();
-
-  const nextMode = () => {
-    resetPomodoroMode();
-  };
+  const nextPomodoroMode = useNextPomodoroModeContext();
 
   const toggleButtonTextOptions = {
     inactive: "Play!",
@@ -22,6 +21,9 @@ function TimerControls() {
 
   return (
     <div className="timer-controls">
+      <button type="button" className="reset-mode" onClick={resetPomodoroMode}>
+        <RefreshIcon />
+      </button>
       <button
         type="button"
         className="toggle-pause"
@@ -31,7 +33,7 @@ function TimerControls() {
           ? toggleButtonTextOptions.active
           : toggleButtonTextOptions.inactive}
       </button>
-      <button type="button" className="next-mode" onClick={nextMode}>
+      <button type="button" className="next-mode" onClick={nextPomodoroMode}>
         <ChevronIcon direction="right" />
       </button>
     </div>

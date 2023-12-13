@@ -19,16 +19,22 @@ export const POMODORO_MODE_KEYS = {
 };
 
 export const POMODORO_OBJECTS = {
-  default: { key: POMODORO_MODE_KEYS.default, ...DEFAULT_POMODORO_MODE },
-  focus: { key: POMODORO_MODE_KEYS.focus, ...DEFAULT_POMODORO_MODE },
+  default: { ...DEFAULT_POMODORO_MODE, key: POMODORO_MODE_KEYS.default },
+  focus: { ...DEFAULT_POMODORO_MODE, key: POMODORO_MODE_KEYS.focus },
   shortBreak: {
+    ...DEFAULT_POMODORO_MODE,
     key: POMODORO_MODE_KEYS.shortBreak,
     name: "Short Break",
-    ...DEFAULT_POMODORO_MODE,
   },
   longBreak: {
+    ...DEFAULT_POMODORO_MODE,
     key: POMODORO_MODE_KEYS.longBreak,
     name: "Long Break",
-    ...DEFAULT_POMODORO_MODE,
   },
 };
+
+export const POMODORO_MODES_LIST = [
+  POMODORO_OBJECTS.focus,
+  POMODORO_OBJECTS.shortBreak,
+  POMODORO_OBJECTS.longBreak,
+];

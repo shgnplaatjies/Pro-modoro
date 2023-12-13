@@ -2,6 +2,7 @@ import { useCallback, useState, useEffect } from "react";
 import {
   POMODORO_OBJECTS,
   POMODORO_MODE_KEYS,
+  POMODORO_MODES_LIST,
 } from "../constants/PomodoroModes.js";
 import {
   CurrentPomodoroModeContext,
@@ -31,33 +32,32 @@ function PomodoroModesContextProvider({ children }) {
     useIncrementCurrentLongBreakIntervalContext();
   const maxInterval = useMaxLongBreakIntervalContext();
 
-  const [mode, setMode] = useState(POMODORO_OBJECTS.default);
-  const [modes, setModes] = useState(POMODORO_OBJECTS);
+  const [mode, setMode] = useState(POMODORO_MODES_LIST[0]);
+  const [modes, setModes] = useState(POMODORO_MODES_LIST);
 
   const isValid = (newModeKey) => {
-    for (const key in POMODORO_OBJECTS)
-      if (newModeKey === POMODORO_OBJECTS[key]) return true;
+    for (const modeObj of POMODORO_MODES_LIST)
+      if (newModeKey === modeObj.key) return true;
     return false;
   };
 
   const syncModes = useCallback(() => {
-    if (modes[mode.key])
-      setModes((prev) => {
-        const updatedModes = {};
-        updatedModes[mode.key] = mode;
-        return { ...prev, ...updatedModes };
+    setModes((prevModes) => {
+      const updatedModes = prevModes.map((item) => {
+        if (item.key === mode.key) return mode;
+        return item;
       });
-    else
-      throw Error(
-        "This mode has been corrupted and cannot sync, check that it contains a key property"
-      );
-  }, [mode, modes]);
+      return updatedModes;
+    });
+  }, [mode]);
 
   const switchMode = useCallback(
     (newModeKey) => {
       if (isValid(newModeKey)) {
         syncModes();
-        setMode(modes[newModeKey]);
+        const newMode = modes.find((item) => item.key === newModeKey);
+
+        setMode({ ...newMode, isActive: false });
       } else
         throw Error(
           "String doesn't map to a valid pomodoro mode key, use the global constant."
@@ -105,7 +105,7 @@ function PomodoroModesContextProvider({ children }) {
   }, [mode]);
 
   const resetMode = useCallback(() => {
-    setMode(POMODORO_OBJECTS.default);
+    setMode(POMODORO_MODES_LIST[0]);
   }, []);
 
   return (

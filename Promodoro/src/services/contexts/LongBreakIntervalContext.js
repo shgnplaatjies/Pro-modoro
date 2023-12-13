@@ -6,7 +6,7 @@ export const MaxLongBreakIntervalContext = createContext();
 
 export const IncrementCurrentLongBreakIntervalContext = createContext(() => {});
 
-export const UpdateCurrentLongBreakIntervalContext = createContext(() => {});
+export const SwitchCurrentLongBreakIntervalContext = createContext(() => {});
 
 export const ResetCurrentLongBreakIntervalContext = createContext(() => {});
 
@@ -17,7 +17,7 @@ export const ResetMaxLongBreakIntervalContext = createContext(() => {});
 export default {
   CurrentLongBreakIntervalContext,
   MaxLongBreakIntervalContext,
-  UpdateCurrentLongBreakIntervalContext,
+  SwitchCurrentLongBreakIntervalContext,
   ResetCurrentLongBreakIntervalContext,
   UpdateMaxLongBreakIntervalContext,
   ResetMaxLongBreakIntervalContext,

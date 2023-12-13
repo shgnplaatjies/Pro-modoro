@@ -2,7 +2,7 @@ import { useContext } from "react";
 import {
   CurrentLongBreakIntervalContext,
   MaxLongBreakIntervalContext,
-  UpdateCurrentLongBreakIntervalContext,
+  SwitchCurrentLongBreakIntervalContext,
   IncrementCurrentLongBreakIntervalContext,
   ResetCurrentLongBreakIntervalContext,
   UpdateMaxLongBreakIntervalContext,
@@ -15,8 +15,8 @@ export const useCurrentLongBreakIntervalContext = () =>
 export const useMaxLongBreakIntervalContext = () =>
   useContext(MaxLongBreakIntervalContext);
 
-export const useUpdateCurrentLongBreakIntervalContext = () =>
-  useContext(UpdateCurrentLongBreakIntervalContext);
+export const useSwitchCurrentLongBreakIntervalContext = () =>
+  useContext(SwitchCurrentLongBreakIntervalContext);
 
 export const useIncrementCurrentLongBreakIntervalContext = () =>
   useContext(IncrementCurrentLongBreakIntervalContext);
@@ -33,7 +33,7 @@ export const useResetMaxLongBreakIntervalContext = () =>
 export default {
   useCurrentLongBreakIntervalContext,
   useMaxLongBreakIntervalContext,
-  useUpdateCurrentLongBreakIntervalContext,
+  useSwitchCurrentLongBreakIntervalContext,
   useIncrementCurrentLongBreakIntervalContext,
   useResetCurrentLongBreakIntervalContext,
   useUpdateMaxLongBreakIntervalContext,
