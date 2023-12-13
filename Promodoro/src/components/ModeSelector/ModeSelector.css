@@ -1,0 +1,12 @@
+ul.mode-selector {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mode-selector li {
+  flex: 1;
+}

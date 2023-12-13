@@ -1,7 +1,11 @@
 button.mode-selection.selected {
-  background-color: #88ff88;
+  background-color: #99999999;
 }
 
 button.mode-selection {
-  background-color: #858585;
+  background-color: transparent;
+  padding: initial;
+  border-radius: 0.1rem;
+  width: 100%;
+  height: 100%;
 }
