@@ -1,0 +1,12 @@
+.tasks-list-widget ul {
+  list-style: none;
+  padding-inline: 0;
+}
+
+.tasks-list-widget .pomodoro-tasks-settings svg {
+  height: 1.5rem;
+}
+
+.tasks-list-widget button.pomodoro-tasks-settings {
+  padding: 0.5rem;
+}
