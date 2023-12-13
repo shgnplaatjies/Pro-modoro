@@ -15,10 +15,13 @@ export const TogglePomodoroModeActivityContext = createContext(() => {});
 
 export const ResetPomodoroModeContext = createContext(() => {});
 
+export const NextPomodoroModeContext = createContext(() => {});
+
 export default {
   CurrentPomodoroModeContext,
   AvailablePomodoroModesContext,
   SwitchPomodoroModeContext,
   TogglePomodoroModeActivityContext,
   ResetPomodoroModeContext,
+  NextPomodoroModeContext,
 };

@@ -1,19 +1,34 @@
-const defaultTime = 60 * 25;
+import { DEFAULT_SETTINGS_CONFIG } from "./PomodoroSettings";
+
+const {
+  time: { sessionDurations },
+} = DEFAULT_SETTINGS_CONFIG;
 
 export const DEFAULT_POMODORO_MODE = {
   name: "Pomodoro",
-  timeLeft: defaultTime,
-  timeTotal: defaultTime,
+  timeLeft: sessionDurations.pomodoro,
+  timeTotal: sessionDurations.pomodoro,
   isActive: false,
 };
 
+export const POMODORO_MODE_KEYS = {
+  default: "default",
+  focus: "focus",
+  shortBreak: "shortBreak",
+  longBreak: "longBreak",
+};
+
 export const POMODORO_OBJECTS = {
-  default: { key: "default", ...DEFAULT_POMODORO_MODE },
-  focus: { key: "focus", ...DEFAULT_POMODORO_MODE },
+  default: { key: POMODORO_MODE_KEYS.default, ...DEFAULT_POMODORO_MODE },
+  focus: { key: POMODORO_MODE_KEYS.focus, ...DEFAULT_POMODORO_MODE },
   shortBreak: {
-    key: "shortBreak",
+    key: POMODORO_MODE_KEYS.shortBreak,
     name: "Short Break",
     ...DEFAULT_POMODORO_MODE,
   },
-  longBreak: { key: "longBreak", name: "Long Break", ...DEFAULT_POMODORO_MODE },
+  longBreak: {
+    key: POMODORO_MODE_KEYS.longBreak,
+    name: "Long Break",
+    ...DEFAULT_POMODORO_MODE,
+  },
 };
