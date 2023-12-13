@@ -3,22 +3,22 @@
 }
 
 /* Don't correlate exactly due to the different svg default orientations */
-.chevron-icon.up,
-.chevron-icon.circled.right {
+.chevron-icon.circled.up,
+.chevron-icon.right {
   transform: rotate(-90deg);
 }
 
-.chevron-icon.down,
-.chevron-icon.circled.left {
+.chevron-icon.circled.down,
+.chevron-icon.left {
   transform: rotate(90deg);
 }
 
-.chevron-icon.left,
-.chevron-icon.circled.up {
+.chevron-icon.circled.left,
+.chevron-icon.up {
   transform: rotate(180deg);
 }
 
-.chevron-icon.right,
-.chevron-icon.circled.down {
+.chevron-icon.circled.right,
+.chevron-icon.down {
   transform: rotate(0deg);
 }
