@@ -23,11 +23,15 @@ export const POMODORO_OBJECTS = {
   focus: { ...DEFAULT_POMODORO_MODE, key: POMODORO_MODE_KEYS.focus },
   shortBreak: {
     ...DEFAULT_POMODORO_MODE,
+    timeLeft: sessionDurations.shortBreak,
+    timeTotal: sessionDurations.shortBreak,
     key: POMODORO_MODE_KEYS.shortBreak,
     name: "Short Break",
   },
   longBreak: {
     ...DEFAULT_POMODORO_MODE,
+    timeLeft: sessionDurations.longBreak,
+    timeTotal: sessionDurations.longBreak,
     key: POMODORO_MODE_KEYS.longBreak,
     name: "Long Break",
   },

@@ -69,17 +69,22 @@ function PomodoroModesContextProvider({ children }) {
   const nextMode = useCallback(() => {
     if (mode.key === POMODORO_MODE_KEYS.focus) {
       if (currentInterval === maxInterval) {
-        setMode(POMODORO_MODE_KEYS.longBreak);
+        switchMode(POMODORO_MODE_KEYS.longBreak);
         incrementCurrentInterval();
       } else {
-        setMode(POMODORO_MODE_KEYS.shortBreak);
+        switchMode(POMODORO_MODE_KEYS.shortBreak);
         incrementCurrentInterval();
       }
     } else {
-      setMode(POMODORO_MODE_KEYS.focus);
-      incrementCurrentInterval();
+      switchMode(POMODORO_MODE_KEYS.focus);
     }
-  }, [currentInterval, incrementCurrentInterval, maxInterval, mode.key]);
+  }, [
+    currentInterval,
+    incrementCurrentInterval,
+    maxInterval,
+    mode.key,
+    switchMode,
+  ]);
 
   const updateMode = useCallback(() => {
     if (mode.timeLeft === 0) {
