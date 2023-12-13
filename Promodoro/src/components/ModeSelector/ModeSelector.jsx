@@ -1,5 +1,6 @@
 import { useAvailablePomodoroModes } from "../../services/hooks/usePomodoroModeContext.js";
 import ModeSelectorButton from "./ModeSelectorButton/ModeSelectorButton.jsx";
+import "./ModeSelector.css";
 
 function ModeSelector() {
   const availableModes = useAvailablePomodoroModes();
