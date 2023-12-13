@@ -11,21 +11,17 @@ import {
  *
  * @param {object} props Properties
  * @param {boolean} props.expanded Whether to render maximized or minimized view
- * @param {{boolean}} props.taskData Whether to render maximized or minimized view
+ * @param {{boolean}} props.other Other Task props
  * @returns
  */
 
-function Task({ expanded, taskData }) {
-  return expanded ? (
-    <TaskMaximized {...taskData} />
-  ) : (
-    <TaskMinimized {...taskData} />
-  );
+function Task({ expanded, ...other }) {
+  return expanded ? <TaskMaximized {...other} /> : <TaskMinimized {...other} />;
 }
 
 Task.propTypes = {
   expanded: PropTypes.bool,
-  taskData: PropTypes.oneOf([TaskMaximizedPropTypes, TaskMinimizedPropTypes]),
+  other: PropTypes.oneOf([TaskMaximizedPropTypes, TaskMinimizedPropTypes]),
 };
 
 export default Task;

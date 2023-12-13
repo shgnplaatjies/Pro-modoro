@@ -1,52 +1,71 @@
+import { useState } from "react";
 import PlusIcon from "../../../assets/componentized/PlusIcon/PlusIcon.jsx";
 import CheckIcon from "../../../assets/componentized/CheckIcon/CheckIcon.jsx";
 import { TaskMinimizedPropTypes } from "../../../services/constants/PropTypeShapes.js";
-import { useState } from "react";
+import "./TaskMinimized.css";
+import VerticalDotsIcon from "../../../assets/componentized/VerticalDotsIcon/VerticalDotsIcon.jsx";
+import { useUpdateTaskListContext } from "../../../services/hooks/useTaskListContext.js";
 
 /**
  * Renders the minimized view of a Task
  *
  * @param {object} props properties
- * @param {boolean} props.isComplete Marks task as complete for display
+ * @param {boolean} props.complete Marks task as complete for display
  * @param {string} props.title Task title for display
- * @param {number} props.actualCycles Actual cycles for display
- * @param {number} props.estimatedCycles  Estimated cycles for display
- * @param {string} props.note Task note for display
+ * @param {number} props.cyclesElapsed Actual cycles for display
+ * @param {number} props.cyclesEstimated  Estimated cycles for display
+ * @param {string} props.noteText Task note for display
+ * @param {any} props.other Other task data
  *
  * @returns {JSX.Element} Minimized Task
  */
 function TaskMinimized({
-  isComplete,
+  complete,
+  cyclesElapsed,
+  cyclesEstimated,
   title,
-  actualCycles,
-  estimatedCycles,
-  note,
+  noteText,
+  ...other
 }) {
-  const [completion, setCompletion] = useState(isComplete);
+  const updateTask = useUpdateTaskListContext();
 
   const toggleComplete = () => {
-    // TODO: Change state of the tasks list context too
-    setCompletion((prev) => !prev);
+    updateTask({
+      complete: !complete,
+      cyclesElapsed,
+      cyclesEstimated,
+      title,
+      noteText,
+      ...other,
+    });
   };
 
   return (
     <article className="minimized-task-widget">
-      <section>
-        <button
-          type="button"
-          className="completion-button"
-          onClick={toggleComplete}
-        >
-          {completion ? <CheckIcon /> : <PlusIcon />}
-        </button>
-        <h3 className="title">{title}</h3>
-        <h3 className="pomodoro-progress">
-          {actualCycles}/{estimatedCycles}
-        </h3>
-        <button type="button" className="settings-button"></button>
+      <section className="main-task-content">
+        <div>
+          <button
+            type="button"
+            className="completion-button"
+            onClick={toggleComplete}
+          >
+            {complete ? <CheckIcon /> : <PlusIcon />}
+          </button>
+          <h3 className={`task-title ${complete ? "line-through" : ""}`}>
+            {title}
+          </h3>
+        </div>
+        <div>
+          <h3 className="pomodoro-progress">
+            {cyclesElapsed}/{cyclesEstimated}
+          </h3>
+          <button type="button" className="settings">
+            <VerticalDotsIcon />
+          </button>
+        </div>
       </section>
       <aside className="notes-section">
-        <p>{note}</p>
+        <p>{noteText}</p>
       </aside>
     </article>
   );

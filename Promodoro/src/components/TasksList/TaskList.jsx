@@ -1,7 +1,8 @@
-import AddTaskButton from "./AddTaskButton/AddTaskButton";
-import Task from "../Task/Task";
-import VerticalDotsIcon from "../../assets/componentized/VerticalDotsIcon/VerticalDotsIcon";
-import { useAvailableTaskList } from "../../services/hooks/useTaskListContext";
+import AddTaskButton from "./AddTaskButton/AddTaskButton.jsx";
+import Task from "../Task/Task.jsx";
+import VerticalDotsIcon from "../../assets/componentized/VerticalDotsIcon/VerticalDotsIcon.jsx";
+import { useAvailableTaskList } from "../../services/hooks/useTaskListContext.js";
+import "./TaskList.css";
 
 /**
  * Renders the various Pomodoro app modes
@@ -12,18 +13,11 @@ import { useAvailableTaskList } from "../../services/hooks/useTaskListContext";
 function TasksList() {
   const taskListData = useAvailableTaskList();
 
-  const openPomodoroSettings = () => {
-    // TODO: Implement settings post-MVP
-  };
-
   return (
     <div className="tasks-list-widget">
       <div className="pomodoro-tasks-header">
         <h2>Tasks</h2>
-        <button
-          className="pomodoro-tasks-settings"
-          onClick={openPomodoroSettings}
-        >
+        <button className="pomodoro-tasks-settings">
           <VerticalDotsIcon />
         </button>
       </div>

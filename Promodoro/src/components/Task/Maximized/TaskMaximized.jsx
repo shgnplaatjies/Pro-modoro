@@ -7,32 +7,32 @@ import { TaskMinimizedPropTypes } from "../../../services/constants/PropTypeShap
  *
  * @param {object} props Custom component properties
  * @param {string} props.title Task title for display
- * @param {number} props.actualCycles Actual cycles for display
- * @param {number} props.estimatedCycles  Estimated cycles for display
+ * @param {number} props.cyclesElapsed Actual cycles for display
+ * @param {number} props.cyclesEstimated  Estimated cycles for display
  * @param {string} props.note Task note for display
- * @param {boolean} props.newTask Hides delete button and actual estimate
+ * @param {boolean} props.isNew Hides delete button and actual estimate
  *
  * @returns {JSX.Element} Minimized Task
  */
 function TaskMaximized({
+  cyclesElapsed,
+  cyclesEstimated,
   title,
-  actualCycles,
-  estimatedCycles = 1,
-  note,
-  newTask,
+  noteText,
+  isNew,
 }) {
-  const [cycleEstimation, setCycleEstimation] = useState(estimatedCycles);
-  const maxEstimation = 0; // TODO: Store in context hook
+  const [cycleEstimation, setCycleEstimation] = useState(cyclesEstimated);
+  const maxEstimation = 10; // TODO: Store in context hook
 
-  const decrementEstimatedCycles =
+  const decrementCyclesEstimated =
     cycleEstimation > 0
       ? () => setCycleEstimation((prev) => prev - 1)
-      : () => {};
+      : undefined;
 
-  const incrementEstimatedCycles =
+  const incrementCyclesEstimated =
     cycleEstimation > maxEstimation
       ? () => setCycleEstimation((prev) => prev + 1)
-      : () => {};
+      : undefined;
 
   const taskEstimationFormVars = {
     formTitle: "taskEstimationForm",
@@ -43,16 +43,12 @@ function TaskMaximized({
   return (
     <article className="maximized-task-widget">
       <form name={taskEstimationFormVars.formTitle}>
-        <input
-          type="text"
-          className="task-title"
-          placeholder="What are you working on?"
-        ></input>
-        <h4>{!newTask && "Actual /"} Estimated Cycles</h4>
+        <input type="text" className="task-title" placeholder={title}></input>
+        <h4>{!isNew && "Actual /"} Estimated Cycles</h4>
         <div className="pomodoro-progress-section">
-          {!newTask && (
+          {!isNew && (
             <>
-              <input type="number" placeholder={actualCycles}></input>
+              <input type="number" placeholder={cyclesElapsed}></input>
               <p>/</p>
             </>
           )}
@@ -64,14 +60,14 @@ function TaskMaximized({
           <button
             type="button"
             className="up"
-            onClick={incrementEstimatedCycles}
+            onClick={incrementCyclesEstimated}
           >
             <ChevronIcon direction={"up"} />
           </button>
           <button
             type="button"
             className="down"
-            onClick={decrementEstimatedCycles}
+            onClick={decrementCyclesEstimated}
           >
             <ChevronIcon direction={"down"} />
           </button>
@@ -79,12 +75,12 @@ function TaskMaximized({
         <textarea
           rows={3}
           className="task-note"
-          placeholder={note}
+          placeholder={noteText}
           name={taskEstimationFormVars.taskNoteInput}
           form={taskEstimationFormVars.formTitle}
         ></textarea>
         <div className="task-actions">
-          {!newTask && <button type="button" className="delete"></button>}
+          {!isNew && <button type="button" className="delete"></button>}
           <span className="secondary-buttons">
             <button type="button" className="discard-changes"></button>
             <button

@@ -75,7 +75,7 @@ function TaskListContextProvider({ children }) {
     [taskList]
   );
 
-  const updateTask = useCallback(({ changedProps }) => {
+  const updateTask = useCallback((changedProps) => {
     const { id } = changedProps;
     if (id !== typeof undefined)
       setTaskList((prev) =>

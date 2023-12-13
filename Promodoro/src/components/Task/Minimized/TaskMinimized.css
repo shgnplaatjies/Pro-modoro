@@ -1,0 +1,48 @@
+.minimized-task-widget {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+}
+
+.minimized-task-widget .main-task-content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.minimized-task-widget .main-task-content > div {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  line-height: unset;
+}
+
+.minimized-task-widget .main-task-content:nth-child(:last-child) {
+  justify-self: flex-end;
+}
+
+.minimized-task-widget button.completion-button {
+  background-color: unset;
+  padding-inline: 0.5rem;
+  border: none;
+}
+
+.minimized-task-widget svg {
+  height: 1.5rem;
+}
+
+.minimized-task-widget button.settings {
+  padding: 0.5rem;
+}
+
+.minimized-task-widget .notes-section p {
+  margin: auto;
+}
+
+.minimized-task-widget .task-title {
+}
+
+.minimized-task-widget .line-through {
+  text-decoration: line-through;
+}

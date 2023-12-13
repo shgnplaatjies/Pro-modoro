@@ -1,18 +1,24 @@
 import PropTypes from "prop-types";
 
 export const TaskMaximizedPropTypes = {
-  title: PropTypes.string.isRequired,
-  actualCycles: PropTypes.number.isRequired,
-  estimatedCycles: PropTypes.number.isRequired,
-  note: PropTypes.string,
+  id: PropTypes.number,
+  complete: PropTypes.bool,
+  cyclesElapsed: PropTypes.number,
+  cyclesEstimated: PropTypes.number,
+  title: PropTypes.string,
+  titlePlaceholder: PropTypes.string,
+  noteText: PropTypes.string,
+  isNew: PropTypes.bool,
 };
 
 export const TaskMinimizedPropTypes = {
-  isComplete: PropTypes.bool,
+  id: PropTypes.number,
+  complete: PropTypes.bool,
+  cyclesElapsed: PropTypes.number,
+  cyclesEstimated: PropTypes.number,
   title: PropTypes.string,
-  actualCycles: PropTypes.number,
-  estimatedCycles: PropTypes.number,
-  note: PropTypes.string,
+  noteText: PropTypes.string,
+  isNew: PropTypes.bool,
 };
 
 export const ContextProviderPropTypes = {
