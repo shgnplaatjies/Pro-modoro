@@ -26,6 +26,7 @@ function TaskListContextProvider({ children }) {
       cyclesElapsed = DEFAULT_TASK.cyclesElapsed,
       cyclesEstimated = DEFAULT_TASK.cyclesEstimated,
       noteText = DEFAULT_TASK.noteText,
+      isNew = DEFAULT_TASK.isNew,
       title = DEFAULT_TASK_TITLE,
       titlePlaceholder = DEFAULT_TASK_TITLE_PLACEHOLDER,
     } = {}) => {
@@ -38,6 +39,7 @@ function TaskListContextProvider({ children }) {
           ...prev,
           {
             id,
+            isNew,
             complete,
             cyclesElapsed,
             cyclesEstimated,

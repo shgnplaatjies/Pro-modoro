@@ -10,4 +10,5 @@ export const DEFAULT_TASK = {
   cyclesEstimated: 1,
   noteText: "",
   complete: false,
+  isNew: true,
 };
