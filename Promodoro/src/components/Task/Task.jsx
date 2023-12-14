@@ -18,9 +18,9 @@ import {
 
 function Task({ expanded, isNew, ...other }) {
   return expanded || isNew ? (
-    <TaskMaximized {...other} />
+    <TaskMaximized {...other} expanded={expanded} isNew={isNew} />
   ) : (
-    <TaskMinimized {...other} />
+    <TaskMinimized {...other} expanded={expanded} isNew={isNew} />
   );
 }
 

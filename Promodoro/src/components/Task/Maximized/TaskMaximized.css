@@ -1,0 +1,85 @@
+.maximized-task-widget {
+}
+
+.maximized-task-widget .estimated-cycles-text {
+  display: flex;
+  justify-content: start;
+}
+
+.maximized-task-widget input.task-title {
+  background-color: transparent;
+  font-size: x-large;
+  width: min-content;
+  height: min-content;
+  display: flex;
+}
+
+.maximized-task-widget input.task-title::placeholder {
+  font-style: italic;
+}
+
+.maximized-task-widget button {
+  padding: 0.5rem;
+  margin: 0;
+  background-color: cornflowerblue;
+}
+
+.maximized-task-widget button svg {
+  height: 1.5rem;
+}
+
+.maximized-task-widget .pomodoro-progress-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.maximized-task-widget .pomodoro-progress-section .cycle-estimation-inputs {
+  display: flex;
+  flex-direction: row;
+}
+
+.maximized-task-widget
+  .pomodoro-progress-section
+  .cycle-estimation-inputs
+  input {
+  width: 4rem;
+  border-radius: 0.3rem;
+  background-color: hsla(0, 0%, 0%, 0.05);
+  border: none;
+  height: min-content;
+  padding-block: 1rem;
+}
+
+.maximized-task-widget .pomodoro-progress-section .cycle-estimation-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.maximized-task-widget
+  .pomodoro-progress-section
+  .cycle-estimation-buttons
+  button {
+  padding: 0.3rem;
+  margin-block: 0.2rem;
+}
+
+.maximized-task-widget textarea.task-note {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 100%;
+}
+
+.maximized-task-widget .task-actions {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+.maximized-task-widget .task-actions .secondary-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}

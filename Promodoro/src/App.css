@@ -4,6 +4,10 @@
   padding-inline: 2rem;
 }
 
+input {
+  overflow: hidden;
+}
+
 button svg {
   display: flex;
   align-items: center;
@@ -11,4 +15,37 @@ button svg {
 
 ul {
   list-style: none;
+}
+
+input {
+  border-style: unset;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"] {
+  -ms-overflow-style: none;
+  overflow: hidden;
+  scrollbar-width: none;
+}
+
+input[type="text"]::-webkit-scrollbar,
+input[type="password"]::-webkit-scrollbar,
+input[type="email"]::-webkit-scrollbar,
+input[type="number"]::-webkit-scrollbar {
+  display: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
