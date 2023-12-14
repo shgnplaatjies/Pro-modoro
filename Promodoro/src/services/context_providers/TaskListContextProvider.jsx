@@ -28,7 +28,7 @@ function TaskListContextProvider({ children }) {
       noteText = DEFAULT_TASK.noteText,
       isNew = DEFAULT_TASK.isNew,
       title = DEFAULT_TASK_TITLE,
-      titlePlaceholder = DEFAULT_TASK_TITLE_PLACEHOLDER,
+      placeholder = DEFAULT_TASK_TITLE_PLACEHOLDER,
     } = {}) => {
       setTaskList((prev) => {
         const id = prev.length ? prev.length + 1 : 0;
@@ -45,7 +45,7 @@ function TaskListContextProvider({ children }) {
             cyclesEstimated,
             noteText,
             title,
-            titlePlaceholder,
+            placeholder,
           },
         ];
 

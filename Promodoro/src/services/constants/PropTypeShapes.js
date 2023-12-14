@@ -6,7 +6,7 @@ export const TaskMaximizedPropTypes = {
   cyclesElapsed: PropTypes.number,
   cyclesEstimated: PropTypes.number,
   title: PropTypes.string,
-  titlePlaceholder: PropTypes.string,
+  placeholder: PropTypes.string,
   noteText: PropTypes.string,
   isNew: PropTypes.bool,
 };
