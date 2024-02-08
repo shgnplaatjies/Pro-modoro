@@ -17,6 +17,8 @@
 }
 
 #root {
+  display: flex;
+  justify-content: center;
   min-width: 360;
   margin: 0 auto;
   text-align: center;

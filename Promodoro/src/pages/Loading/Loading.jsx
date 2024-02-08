@@ -25,7 +25,7 @@ function Loading() {
   });
 
   return (
-    <div className="loading-screen">
+    <div className="loading-container">
       <h2>{loadingText}</h2>
       <DotLoader className="dot-loader" loading size={"2.3rem"} color="black" />
     </div>

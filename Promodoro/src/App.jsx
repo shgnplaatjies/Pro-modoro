@@ -17,7 +17,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app-screen">
+    <div className="app-container">
       {loading ? (
         <Loading />
       ) : (

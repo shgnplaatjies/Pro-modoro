@@ -1,11 +1,8 @@
-.app-screen {
+.app-container {
   display: flex;
   height: 100%;
+  width: clamp(4rem, calc(100% - 2rem), 30rem);
   padding-inline: 2rem;
-}
-
-input {
-  overflow: hidden;
 }
 
 button svg {
@@ -18,6 +15,7 @@ ul {
 }
 
 input {
+  overflow: hidden;
   border-style: unset;
   border: none;
   background-color: rgba(0, 0, 0, 0.05);
