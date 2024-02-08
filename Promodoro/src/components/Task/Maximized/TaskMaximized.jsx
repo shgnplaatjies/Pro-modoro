@@ -1,8 +1,8 @@
 import ChevronIcon from "../../../assets/componentized/Chevron/ChevronIcon/ChevronIcon.jsx";
-import { useState } from "react";
 import { TaskMinimizedPropTypes } from "../../../services/constants/PropTypeShapes.js";
 import "./TaskMaximized.css";
 import { DEFAULT_TASK } from "../../../services/constants/TaskDefaults.js";
+import { useIncrementTaskListTaskContext } from "../../../services/hooks/useTaskListContext.js";
 
 /**
  * Renders the maximized view of a Task
@@ -14,6 +14,7 @@ import { DEFAULT_TASK } from "../../../services/constants/TaskDefaults.js";
  * @param {string} props.note Task note for display
  * @param {boolean} props.placeholder Placeholder text for display
  * @param {string} props.title Task title for display
+ * @param {string} props.taskId Task Id to render relevant data
  *
  * @returns {JSX.Element} Minimized Task
  */
@@ -24,31 +25,16 @@ function TaskMaximized({
   noteText,
   placeholder,
   isNew,
+  taskId,
 }) {
-  const [cycleEstimation, setCycleEstimation] = useState(cyclesEstimated);
   const maxEstimation = 10; // TODO: Store in context hook
 
-  const decrementCyclesEstimated =
-    cycleEstimation > 0
-      ? () => setCycleEstimation((prev) => prev - 1)
-      : undefined;
-
-  const incrementCyclesEstimated =
-    cycleEstimation > maxEstimation
-      ? () => setCycleEstimation((prev) => prev + 1)
-      : undefined;
+  const incrementTaskListTask = useIncrementTaskListTaskContext();
 
   const taskEstimationFormVars = {
     formTitle: "taskEstimationForm",
     cycleEstimationInput: "cycleEstimationInput",
     taskNoteInput: "taskNoteInput",
-  };
-
-  const incrementEstimatedCycle = (elementId) => {
-    const incrementInput = document.getElementById(elementId);
-
-    incrementInput.value = !incrementInput.value ? 1 : incrementInput.value + 1;
-    setCycleEstimation(incrementInput.value);
   };
 
   return (
@@ -69,8 +55,7 @@ function TaskMaximized({
               <>
                 <input
                   type="number"
-                  className="increment-estimation"
-                  id="increment-estimation"
+                  className="cycles-elapsed"
                   placeholder={DEFAULT_TASK.cyclesElapsed}
                   defaultValue={cyclesElapsed}
                 ></input>
@@ -79,23 +64,24 @@ function TaskMaximized({
             )}
             <input
               type="number"
-              className="decrement-estimation"
+              className="cycles-estimated"
               name={taskEstimationFormVars.cycleEstimationInput}
               htmlFor={taskEstimationFormVars.formTitle}
+              value={cyclesEstimated}
             />
           </div>
           <div className="cycle-estimation-buttons">
             <button
               type="button"
               className="up"
-              onClick={incrementEstimatedCycle}
+              onClick={() => incrementTaskListTask(taskId)}
             >
               <ChevronIcon direction={"up"} />
             </button>
             <button
               type="button"
               className="down"
-              onClick={decrementCyclesEstimated}
+              onClick={() => incrementTaskListTask(taskId)}
             >
               <ChevronIcon direction={"down"} />
             </button>

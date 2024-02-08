@@ -15,6 +15,8 @@ export const ToggleTaskCompleteContext = createContext(() => {});
 
 export const SelectCurrentTaskContext = createContext(() => {});
 
+export const IncrementTaskListTaskContext = createContext(() => {});
+
 export const UpdateTaskListContext = createContext(() => {});
 
 export default {
@@ -26,4 +28,5 @@ export default {
   ToggleTaskCompleteContext,
   SelectCurrentTaskContext,
   UpdateTaskListContext,
+  IncrementTaskListTaskContext,
 };

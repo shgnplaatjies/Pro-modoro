@@ -7,6 +7,7 @@ import {
   ToggleTaskCompleteContext,
   SelectCurrentTaskContext,
   UpdateTaskListContext,
+  IncrementTaskListTaskContext,
 } from "../contexts/TaskListContext.js";
 
 export const useCurrentTask = () => useContext(CurrentTaskContext);
@@ -18,6 +19,9 @@ export const useAddTaskContext = () => useContext(AddTaskContext);
 export const useDeleteTaskContext = () => useContext(DeleteTaskContext);
 
 export const useUpdateTaskListContext = () => useContext(UpdateTaskListContext);
+
+export const useIncrementTaskListTaskContext = () =>
+  useContext(IncrementTaskListTaskContext);
 
 export const useToggleTaskCompleteContext = () =>
   useContext(ToggleTaskCompleteContext);
