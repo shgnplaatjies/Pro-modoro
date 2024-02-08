@@ -2,6 +2,7 @@ import ChevronIcon from "../../../assets/componentized/Chevron/ChevronIcon/Chevr
 import { useState } from "react";
 import { TaskMinimizedPropTypes } from "../../../services/constants/PropTypeShapes.js";
 import "./TaskMaximized.css";
+import { DEFAULT_TASK } from "../../../services/constants/TaskDefaults.js";
 
 /**
  * Renders the maximized view of a Task
@@ -43,6 +44,13 @@ function TaskMaximized({
     taskNoteInput: "taskNoteInput",
   };
 
+  const incrementEstimatedCycle = (elementId) => {
+    const incrementInput = document.getElementById(elementId);
+
+    incrementInput.value = !incrementInput.value ? 1 : incrementInput.value + 1;
+    setCycleEstimation(incrementInput.value);
+  };
+
   return (
     <article className="maximized-task-widget">
       <form name={taskEstimationFormVars.formTitle}>
@@ -59,12 +67,19 @@ function TaskMaximized({
           <div className="cycle-estimation-inputs">
             {!isNew && (
               <>
-                <input type="number" placeholder={cyclesElapsed}></input>
+                <input
+                  type="number"
+                  className="increment-estimation"
+                  id="increment-estimation"
+                  placeholder={DEFAULT_TASK.cyclesElapsed}
+                  defaultValue={cyclesElapsed}
+                ></input>
                 <p>/</p>
               </>
             )}
             <input
               type="number"
+              className="decrement-estimation"
               name={taskEstimationFormVars.cycleEstimationInput}
               htmlFor={taskEstimationFormVars.formTitle}
             />
@@ -73,7 +88,7 @@ function TaskMaximized({
             <button
               type="button"
               className="up"
-              onClick={incrementCyclesEstimated}
+              onClick={incrementEstimatedCycle}
             >
               <ChevronIcon direction={"up"} />
             </button>

@@ -1,6 +1,5 @@
 import { useCallback, useState, useEffect } from "react";
 import {
-  POMODORO_OBJECTS,
   POMODORO_MODE_KEYS,
   POMODORO_MODES_LIST,
 } from "../constants/PomodoroModes.js";
@@ -41,6 +40,19 @@ function PomodoroModesContextProvider({ children }) {
     return false;
   };
 
+  const toggleCurrentModeActive = useCallback(
+    () => setMode((prev) => ({ ...mode, isActive: !prev.isActive })),
+    [mode]
+  );
+
+  const resetMode = useCallback(
+    () =>
+      setMode((prevMode) =>
+        POMODORO_MODES_LIST.find((item) => item.key == prevMode.key)
+      ),
+    []
+  );
+
   const syncModes = useCallback(() => {
     setModes((prevModes) => {
       const updatedModes = prevModes.map((item) => {
@@ -70,19 +82,23 @@ function PomodoroModesContextProvider({ children }) {
     if (mode.key === POMODORO_MODE_KEYS.focus) {
       if (currentInterval === maxInterval) {
         switchMode(POMODORO_MODE_KEYS.longBreak);
-        incrementCurrentInterval();
       } else {
         switchMode(POMODORO_MODE_KEYS.shortBreak);
-        incrementCurrentInterval();
       }
-    } else {
-      switchMode(POMODORO_MODE_KEYS.focus);
-    }
+    } else
+      switchMode(
+        POMODORO_MODES_LIST.find((item) => item.key == POMODORO_MODE_KEYS.focus)
+          .key
+      );
+
+    resetMode();
+    incrementCurrentInterval();
   }, [
     currentInterval,
     incrementCurrentInterval,
     maxInterval,
     mode.key,
+    resetMode,
     switchMode,
   ]);
 
@@ -104,14 +120,6 @@ function PomodoroModesContextProvider({ children }) {
 
     return () => clearTimeout(timeoutId);
   }, [mode.isActive, mode.timeLeft, updateMode]);
-
-  const toggleCurrentModeActive = useCallback(() => {
-    setMode((prev) => ({ ...mode, isActive: !prev.isActive }));
-  }, [mode]);
-
-  const resetMode = useCallback(() => {
-    setMode(POMODORO_MODES_LIST[0]);
-  }, []);
 
   return (
     <CurrentPomodoroModeContext.Provider value={mode}>
