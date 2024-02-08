@@ -8,6 +8,7 @@ import {
   ToggleTaskCompleteContext,
   SelectCurrentTaskContext,
   UpdateTaskListContext,
+  IncrementTaskListTaskContext,
 } from "../contexts/TaskListContext.js";
 import {
   DEFAULT_TASK,
@@ -90,6 +91,21 @@ function TaskListContextProvider({ children }) {
     else throw Error("Task with that ID could not be found");
   }, []);
 
+  const incrementTaskListTask = useCallback(
+    (taskId) => {
+      const isValidTask = taskList.filter((task) => task.id === taskId);
+      if (isValidTask)
+        setTaskList((prev) =>
+          prev.map((task) =>
+            task.id === taskId
+              ? { ...task, cyclesEstimated: task.cyclesEstimated++ }
+              : task
+          )
+        );
+    },
+    [taskList]
+  );
+
   return (
     <CurrentTaskContext.Provider value={currentTask}>
       <AvailableTasksContext.Provider value={taskList}>
@@ -99,7 +115,11 @@ function TaskListContextProvider({ children }) {
               <UpdateTaskListContext.Provider value={updateTask}>
                 <ToggleTaskCompleteContext.Provider value={toggleTaskComplete}>
                   <SelectCurrentTaskContext.Provider value={selectCurrentTask}>
-                    {children}
+                    <IncrementTaskListTaskContext.Provider
+                      value={incrementTaskListTask}
+                    >
+                      {children}
+                    </IncrementTaskListTaskContext.Provider>
                   </SelectCurrentTaskContext.Provider>
                 </ToggleTaskCompleteContext.Provider>
               </UpdateTaskListContext.Provider>
