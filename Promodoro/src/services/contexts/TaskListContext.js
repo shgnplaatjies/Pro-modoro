@@ -17,6 +17,8 @@ export const SelectCurrentTaskContext = createContext(() => {});
 
 export const IncrementTaskListTaskContext = createContext(() => {});
 
+export const DecrementTaskListTaskContext = createContext(() => {});
+
 export const UpdateTaskListContext = createContext(() => {});
 
 export default {
@@ -29,4 +31,5 @@ export default {
   SelectCurrentTaskContext,
   UpdateTaskListContext,
   IncrementTaskListTaskContext,
+  DecrementTaskListTaskContext,
 };

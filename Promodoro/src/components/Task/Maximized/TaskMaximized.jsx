@@ -2,7 +2,10 @@ import ChevronIcon from "../../../assets/componentized/Chevron/ChevronIcon/Chevr
 import { TaskMinimizedPropTypes } from "../../../services/constants/PropTypeShapes.js";
 import "./TaskMaximized.css";
 import { DEFAULT_TASK } from "../../../services/constants/TaskDefaults.js";
-import { useIncrementTaskListTaskContext } from "../../../services/hooks/useTaskListContext.js";
+import {
+  useIncrementTaskListTaskContext,
+  useDecrementTaskListTaskContext,
+} from "../../../services/hooks/useTaskListContext.js";
 
 /**
  * Renders the maximized view of a Task
@@ -30,6 +33,7 @@ function TaskMaximized({
   const maxEstimation = 10; // TODO: Store in context hook
 
   const incrementTaskListTask = useIncrementTaskListTaskContext();
+  const decrementTaskListTask = useDecrementTaskListTaskContext();
 
   const taskEstimationFormVars = {
     formTitle: "taskEstimationForm",
@@ -57,7 +61,7 @@ function TaskMaximized({
                   type="number"
                   className="cycles-elapsed"
                   placeholder={DEFAULT_TASK.cyclesElapsed}
-                  defaultValue={cyclesElapsed}
+                  value={cyclesElapsed}
                 ></input>
                 <p>/</p>
               </>
@@ -81,7 +85,7 @@ function TaskMaximized({
             <button
               type="button"
               className="down"
-              onClick={() => incrementTaskListTask(taskId)}
+              onClick={() => decrementTaskListTask(taskId)}
             >
               <ChevronIcon direction={"down"} />
             </button>

@@ -9,6 +9,7 @@ import {
   SelectCurrentTaskContext,
   UpdateTaskListContext,
   IncrementTaskListTaskContext,
+  DecrementTaskListTaskContext,
 } from "../contexts/TaskListContext.js";
 import {
   DEFAULT_TASK,
@@ -105,6 +106,20 @@ function TaskListContextProvider({ children }) {
     },
     [taskList]
   );
+  const decrementTaskListTask = useCallback(
+    (taskId) => {
+      const isValidTask = taskList.filter((task) => task.id === taskId);
+      if (isValidTask)
+        setTaskList((prev) =>
+          prev.map((task) =>
+            task.id === taskId && task.cyclesEstimated > 0
+              ? { ...task, cyclesEstimated: task.cyclesEstimated-- }
+              : task
+          )
+        );
+    },
+    [taskList]
+  );
 
   return (
     <CurrentTaskContext.Provider value={currentTask}>
@@ -118,7 +133,11 @@ function TaskListContextProvider({ children }) {
                     <IncrementTaskListTaskContext.Provider
                       value={incrementTaskListTask}
                     >
-                      {children}
+                      <DecrementTaskListTaskContext.Provider
+                        value={decrementTaskListTask}
+                      >
+                        {children}
+                      </DecrementTaskListTaskContext.Provider>
                     </IncrementTaskListTaskContext.Provider>
                   </SelectCurrentTaskContext.Provider>
                 </ToggleTaskCompleteContext.Provider>
